@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公示</title>
+</head>
+
+<body bgcolor="black">
+<meta http-equiv="refresh" content="120">
+<center>
+<h1>
+
+    <font color="red" >采购化验结果公示</font>
+</h1>
+
+<table class=table4_12>
+        <tr>
+            <th>车牌号码</th>
+            <th>登记入厂时间</th>
+            <th>司机姓名</th>
+            <th>排队号码</th>
+            <th>物品种类</th>
+            <th>水分</th>
+            <th>杂质</th>
+            <th>整米率</th>
+            <th>病斑</th>
+            <th>垩白</th>
+            <th>出米率</th>
+            <th>互混</th>
+            <th>黄粒米</th>
+            <th>化验更新时间</th>
+            <th>化验结果</th>
+
+        </tr>
+
+{% for items in displayList %}
+    <tr>
+    <td>{{ items.queue.car_number }}</td>
+    <td>{{ items.queue.in_time|date:"Y-m-d H:i" }}</td>
+    <td>{{ items.queue.driver_name }}</td>
+    <td>{{ items.queue.queue_number }}</td>
+    <td>{{ items.queue.items }}</td>
+    <td>{{ items.water_content }}%</td>
+    <td>{{ items.impurity}}%</td>
+    <td>{{ items.whole_rice_rate }}%</td>
+    <td>{{ items.lesion }}%</td>
+    <td>{{items.chalkiness }}%</td>
+    <td>{{items.out_of_rice_rate }}%</td>
+    <td>{{ items.mixed }}%</td>
+    <td>{{ items.yellow_grain_rice }}%</td>
+    <td>{{ items.inspection_creat_time|date:"Y-m-d H:i" }}</td>
+    {% if items.is_good %}
+        <td><font color="green">合格</font></td>
+    {% else %}
+       <td> <font color="#FF0000">不合格</font></td>
+    {% endif %}
+    </tr>
+{% endfor %}
+
+
+</table>
+</center>
+</body>
+
+</html>
+
+
+<style>
+.table4_12 table {
+	width:100%;
+	margin:15px 0;
+	border:0;
+}
+.table4_12 th {
+	background-color:#98EBDC;
+	color:#000000
+}
+.table4_12,.table4_12 th,.table4_12 td {
+	font-size:0.95em;
+	text-align:center;
+	padding:4px;
+	border-collapse:collapse;
+}
+.table4_12 th,.table4_12 td {
+	border: 1px solid #c4f3eb;
+	border-width:1px 0 1px 0
+}
+.table4_12 tr {
+	border: 1px solid #c4f3eb;
+}
+.table4_12 tr:nth-child(odd){
+	background-color:#dcf8f3;
+}
+.table4_12 tr:nth-child(even){
+	background-color:#fdfdfd;
+}
+</style>
